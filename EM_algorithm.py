@@ -1,3 +1,12 @@
+#################################
+### Author: Paul Soto 		  ###
+### 		paul.soto@upf.edu ###
+#								#
+# This file is a class to #######
+# perform the EM algorithm ######
+# on a multinomial distribution##
+#################################
+
 import numpy as np
 
 
