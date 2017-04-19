@@ -3,8 +3,8 @@
 ### 		paul.soto@upf.edu ###
 #								#
 # This file is a class to #######
-# perform the EM algorithm ######
-# on a multinomial distribution##
+# clean a series of text   ######
+# with basic preprocessing     ##
 #################################
 import pandas as pd
 from nltk import PorterStemmer
