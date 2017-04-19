@@ -58,4 +58,4 @@ for row in quote_table.find_all("tr"):
 	index+=1
 
 # Export to CSV
-final_df.to_csv("final_text_db.csv",index=False)
+final_df.to_csv("movie_quotes.csv",index=False, encoding='utf-8')
