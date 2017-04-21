@@ -12,6 +12,18 @@ from bs4 import BeautifulSoup
 import urllib2
 import pandas as pd
 
+
+"""
+NOTE IN PYTHON 3:
+
+1) "import urllib" instead of "import urllib2"
+2) To open a webpage: use 
+
+url = 'http://example.com/'
+req = urllib.request.urlopen(url)
+html = req.read() 
+"""
+
 def get_HTML(url):
 	"""
 	This file creates a HTML soup from a given url
