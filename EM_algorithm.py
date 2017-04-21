@@ -30,24 +30,34 @@ class EM_algo():
 		else:
 			self.betas =prior_betas 
 		self.ll_history = []
+
 	def E_step(self):
+
+		def complete_ll(dt_matrix):
+			"""
+			Computes the total likelihood using
+			Pr(w_d) = sigma_k rho_k * Pi_v (beta_k,v)
+
+			and ll = 
+			"""
+			### Use log-sum trick
+			dt_tempZ = dt_matrix - np.max(dt_matrix,1)[:,np.newaxis]
+			ll = np.log(np.exp(dt_tempZ).sum(1)).sum()+dt_temp.max(1).sum()
+			return ll
+
 		### Get likelihood for each document-topic
 		dt_temp = np.zeros((self.D,self.K))
 		for doc in range(self.D):
 			for topic in range(self.K):
 				dt_temp[doc,topic] = np.log(self.rhos[topic]) + \
 									(self.data[doc]*np.log(self.betas[topic])).sum()
-
-
-		### Use log-sum trick
-		dt_tempZ = dt_temp - np.max(dt_temp,1)[:,np.newaxis]
-
 		### Compute complete log-likelihood
-		ll = np.log(np.exp(dt_tempZ).sum(1)).sum()+dt_temp.max(1).sum()
+		self.ll = complete_ll(dt_temp)
+		self.ll_history.append(self.ll)
+
 		### normalize the Zs
 		self.zs = np.exp(dt_temp)/np.exp(dt_temp).sum(1)[:,np.newaxis]
-		self.ll = ll
-		self.ll_history.append(ll)
+
 
 	def M_step(self):
 		### Update rhos
