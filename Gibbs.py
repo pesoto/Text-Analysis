@@ -3,7 +3,7 @@
 ### 		paul.soto@upf.edu ###
 #								#
 # This file is a class to #######
-# run (uncollapsed) Gibbs       #
+# run             Gibbs       #
 # sampling for Latent Dirichlet #
 # Dirichlet Allocation  		#
 #################################
