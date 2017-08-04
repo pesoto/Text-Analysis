@@ -1,7 +1,6 @@
 # Text-Analysis
-Explaining textual analysis tools in Python. Including Preprocessing, Skip Gram (word2vec), and Topic Modelling. 
 
-This is not a module for large scale use, but rather a set of scripts to explain the methodologies.
+This is not a module for large scale use, but rather a set of scripts to explain popular methodologies in text analysis, including Web Scraping, Preprocessing, Skip Gram (word2vec), and Topic Modelling. 
 
 ## 1. Web Scraping ##
 
