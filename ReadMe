@@ -1,0 +1,20 @@
+# Text-Analysis
+Explaining textual analysis tools in Python. Including Preprocessing, Skip Gram (word2vec), and Topic Modelling. 
+
+This is not a module for large scale use, but rather a set of scripts to explain the methodologies.
+
+## Preprocessing ##
+
+Text_Preprocessing: explains common ways of representing text data in Python through one-hot encoded vectors, cleaning data with removal of stopwords and lowercasing, and TF-IDF weights.
+
+## EM-Algorithm ##
+
+EM_Algorithm: explains how to estimate a distribution using the EM-Algorithm. This is a precursor to the topic modelling example.
+
+## Gibbs Sampling ##
+
+Gibbs_Sampling: explains how Gibbs sampling works in the context of topic modelling. 
+
+## Skip Gram ##
+
+Skip_Gram: explains how the Skip Gram model from Mikolov et al. works (with gradient descent and no negative sampling). 
