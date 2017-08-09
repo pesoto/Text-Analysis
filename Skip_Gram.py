@@ -19,6 +19,7 @@ import re
 import itertools
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd 
 
 # M is the number of words to look (on one side) of each word for the context
 M = 2
@@ -80,7 +81,8 @@ training = list(itertools.chain(*map(get_context,docs_split)))
 
 log_likelihood = np.array([])
 epochs = 10000
-learning_rate = 0.025
+learning_rate = 0.001
+tolerance = 0.001
 discount = float(learning_rate)/epochs
 
 for epoch in range(epochs):
@@ -105,10 +107,13 @@ for epoch in range(epochs):
 		likelihood+=sum(map(np.log,l_output_a))
 	log_likelihood=np.append(log_likelihood,likelihood)
 	learning_rate -= discount
-
+	if epoch<2: continue
+	if (abs(likelihood-log_likelihood[-2])<tolerance):
+		break
+Plot out word embeddings and log-likelihood function
 # Plot out word embeddings and log-likelihood function
 fig = plt.figure()
-ax = fig.add_subplot(1,1,1,projection="3d")
+ax = fig.add_subplot(1,2,1,projection="3d")
 ax.scatter(V[0],V[1],V[2], alpha=0.3)
 for i,txt in enumerate(words):
 	ax.text(V[0][i],V[1][i],V[2][i],txt, size=10)
