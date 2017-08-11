@@ -14,12 +14,10 @@
 #################################
 
 import numpy as np 
-from collections import Counter
 import re
 import itertools
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd 
 
 # M is the number of words to look (on one side) of each word for the context
 M = 2
