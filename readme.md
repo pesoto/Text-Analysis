@@ -31,3 +31,9 @@ Gibbs_Sampling.py: explains how Gibbs sampling works in the context of topic mod
 How can I find which words in my documents are related to each other syntactically and semantically? How does a basic neural network work?
 
 Skip_Gram.py: explains how the Skip Gram model from Mikolov et al. works (with gradient descent and no negative sampling). 
+
+## 6. Long Short Term Memory ##
+
+How can I develop a language model with memory? How does backpropogation/gradient descent through time work? 
+
+LSTM_Tutorial.py: explains the backpropogation of an LSTM model. Extends the code from Nicolas Jimenez to train a language model with memory.
