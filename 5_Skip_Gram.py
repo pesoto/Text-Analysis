@@ -14,6 +14,7 @@
 #################################
 
 import numpy as np 
+from collections import Counter
 import re
 import itertools
 import matplotlib.pyplot as plt
@@ -71,8 +72,8 @@ words = np.unique(docs_words)
 vectors = np.eye(words.shape[0])
 
 # Initiate randomly V and W matrices
-V = np.random.randn(H,words.shape[0])
-W = np.random.randn(words.shape[0],H)
+U = np.random.randn(H,words.shape[0])
+V = np.random.randn(words.shape[0],H)
 
 # Create list of all training examples
 training = list(itertools.chain(*map(get_context,docs_split)))
@@ -89,8 +90,8 @@ for epoch in range(epochs):
 		# Forward propogate word
 		input_index = np.where(words==example[0])[0][0]
 		l_input = vectors[input_index]
-		l_hidden = np.dot(V,l_input)
-		l_output = np.dot(W,l_hidden)
+		l_hidden = np.dot(U,l_input)
+		l_output = np.dot(V,l_hidden)
 		l_output_a = sigma(l_output)
 		errors = np.zeros(words.shape[0])
 		# Compute the error for each word in context window
@@ -100,21 +101,20 @@ for epoch in range(epochs):
 			errors += (l_output_a-l_target)
 		# Update the weights of V and W matrices
 		delta2 = errors*sigma(l_output,True)
-		W -= learning_rate*np.outer(delta2,l_hidden)
-		V -= learning_rate*np.outer(np.dot(W.T,delta2),l_input)
+		V -= learning_rate*np.outer(delta2,l_hidden)
+		U -= learning_rate*np.outer(np.dot(V.T,delta2),l_input)
 		likelihood+=sum(map(np.log,l_output_a))
 	log_likelihood=np.append(log_likelihood,likelihood)
 	learning_rate -= discount
 	if epoch<2: continue
 	if (abs(likelihood-log_likelihood[-2])<tolerance):
 		break
-Plot out word embeddings and log-likelihood function
 # Plot out word embeddings and log-likelihood function
 fig = plt.figure()
 ax = fig.add_subplot(1,2,1,projection="3d")
-ax.scatter(V[0],V[1],V[2], alpha=0.3)
+ax.scatter(U[0],U[1],U[2], alpha=0.3)
 for i,txt in enumerate(words):
-	ax.text(V[0][i],V[1][i],V[2][i],txt, size=10)
+	ax.text(U[0][i],U[1][i],U[2][i],txt, size=10)
 ax = fig.add_subplot(1,2,2)
 ax.plot(log_likelihood)
 plt.show()
